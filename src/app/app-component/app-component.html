@@ -1,1 +1,45 @@
-<p>app-component works!</p>
+<div
+  class="bg-gray-100 rounded-lg shadow-lg lg:w-1/2 mx-auto flex flex-col gap-4 p-4 h-full"
+>
+  <h1 class="text-center text-xl">List of all your todos</h1>
+  <div class="h-1/4 flex flex-col gap-2">
+    <input
+      type="text"
+      placeholder="Search todos..."
+      class="w-full p-2 border border-gray-300 rounded"
+    />
+    <div>
+      <label class="mr-4">
+        <input type="radio" name="filter" value="all" checked class="mr-1" />
+        All
+      </label>
+      <label class="mr-4">
+        <input type="radio" name="filter" value="completed" class="mr-1" />
+        Completed
+      </label>
+      <label>
+        <input type="radio" name="filter" value="pending" class="mr-1" />
+        Pending
+      </label>
+    </div>
+  </div>
+
+  <div class="flex flex-col  gap-3 min-h-2/4 overflow-y-auto">
+    @for (todo of todos; track $index) {
+    <div
+      class="border rounded p-3 flex justify-between items-center"
+      [class]="{'border-red-500': checkIfDatepassed(todo.endDate), 'border-green-500': !checkIfDatepassed(todo.endDate)}"
+    >
+      <p>{{todo.title}}</p>
+      <p>{{`${formatNumber(todo.endDate.getDate())}/${formatNumber(todo.endDate.getMonth()+1)}/${formatNumber(todo.endDate.getFullYear())}`}}</p>
+    </div>
+    }
+  </div>
+  <div class="min-h-1/4 flex items-center">
+    <a [routerLink]="['/create-todo']"
+      class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 hover:cursor-pointer"
+    >
+      Add Todo
+  </a>
+  </div>
+</div>

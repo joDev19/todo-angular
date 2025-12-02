@@ -1,0 +1,34 @@
+<div
+  class="bg-gray-100 rounded-lg shadow-lg lg:w-1/2 mx-auto flex flex-col justify-start gap-4 p-4 h-full"
+>
+  <a [routerLink]="['/']">
+    list of todos
+  </a>
+  <h1 class="text-center text-xl">Create a new todo</h1>
+  <form (submit)="check($event)" classs="flex flex-col gap-4">
+    <div class="flex flex-col gap-2 p-2 rounded-lg">
+      <label class="text-lg" for="title">Title:</label>
+
+      <input
+        type="text"
+        class="w-full h-8 border bg-white border-gray-300 rounded focus:outline-none p-1"
+        id="title"
+        [formControl]="titleControl"
+      />
+    </div>
+    <div class="flex flex-col gap-2 p-2 rounded-lg">
+      <label class="text-lg" for="title">Date de fin:</label>
+      <input
+        type="date"
+        class="w-full h-8 border bg-white border-gray-300 rounded focus:outline-none p-1"
+        id="title"
+        [formControl]="dateEndControl"
+      />
+    </div>
+    <div class="flex">
+      <button class="p-3 border border-gray-300 bg-white rounded-lg hover:cursor-pointer">
+        Create todo
+      </button>
+    </div>
+  </form>
+</div>
