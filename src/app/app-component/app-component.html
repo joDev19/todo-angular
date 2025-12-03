@@ -27,9 +27,12 @@
   <div class="flex flex-col  gap-3 min-h-2/4 overflow-y-auto">
     @for (todo of todos; track $index) {
     <div
-      class="border rounded p-3 flex justify-between items-center"
+      class="relative border min-h-24 rounded p-3 flex justify-between items-center"
       [class]="{'border-red-500': checkIfDatepassed(todo.endDate), 'border-green-500': !checkIfDatepassed(todo.endDate)}"
     >
+    <div class="absolute top-0 left-0 m-1 hover:cursor-pointer">
+      <fa-icon [icon]="trashIcon" class="hover:text-red-500" (click)="deleteTodo(todo.id)" />
+    </div>
       <p>{{todo.title}}</p>
       <p>{{`${formatNumber(todo.endDate.getDate())}/${formatNumber(todo.endDate.getMonth()+1)}/${formatNumber(todo.endDate.getFullYear())}`}}</p>
     </div>
