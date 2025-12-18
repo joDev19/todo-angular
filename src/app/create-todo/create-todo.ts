@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import { Router ,RouterLink } from "@angular/router";
 import { AppService } from '../../service';
+import Todo from '../../type';
 
 @Component({
   selector: 'app-create-todo',
@@ -21,10 +22,11 @@ export class CreateTodo {
       alert('Please fill in all fields');
       return ;
     }
-    const newTodo = {
+    const newTodo: Todo = {
       id: this.appService.getLastId() + 1,
       title: this.titleControl.value as string,
       completed: false,
+      inUpdating: false,
       endDate: new Date(this.dateEndControl.value as string)
     };
     this.appService.addTodo(newTodo);

@@ -3,7 +3,7 @@ import { AppService } from '../../service';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import {faTrash} from '@fortawesome/free-solid-svg-icons';
+import {faTrash, faPen} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-app-component',
@@ -26,4 +26,5 @@ export class AppComponent {
     this.todos = this.appService.getTodos();
   }
   trashIcon = faTrash;
+  penIcon = faPen;
 }

@@ -1,5 +1,5 @@
 <div
-  class="bg-gray-100 rounded-lg shadow-lg lg:w-1/2 mx-auto flex flex-col gap-4 p-4 h-full"
+  class="bg-gray-100 rounded-lg shadow-lg lg:w-1/2 mx-auto flex flex-col justify-center gap-4 p-4 h-full"
 >
   <h1 class="text-center text-xl">List of all your todos</h1>
   <div class="h-1/4 flex flex-col gap-2">
@@ -30,8 +30,12 @@
       class="relative border min-h-24 rounded p-3 flex justify-between items-center"
       [class]="{'border-red-500': checkIfDatepassed(todo.endDate), 'border-green-500': !checkIfDatepassed(todo.endDate)}"
     >
+
     <div class="absolute top-0 left-0 m-1 hover:cursor-pointer">
       <fa-icon [icon]="trashIcon" class="hover:text-red-500" (click)="deleteTodo(todo.id)" />
+      <a [routerLink]="['update-todo', todo.id]">
+        <fa-icon [icon]="penIcon" class="hover:text-yellow-500" />
+      </a>
     </div>
       <p>{{todo.title}}</p>
       <p>{{`${formatNumber(todo.endDate.getDate())}/${formatNumber(todo.endDate.getMonth()+1)}/${formatNumber(todo.endDate.getFullYear())}`}}</p>

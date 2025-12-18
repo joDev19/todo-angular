@@ -14,6 +14,7 @@
         class="w-full h-8 border bg-white border-gray-300 rounded focus:outline-none p-1"
         id="title"
         [formControl]="titleControl"
+        [defaultValue]="currentTodo()?.title"
       />
     </div>
     <div class="flex flex-col gap-2 p-2 rounded-lg">
@@ -22,12 +23,13 @@
         type="date"
         class="w-full h-8 border bg-white border-gray-300 rounded focus:outline-none p-1"
         id="title"
-        [formControl]="dateEndControl"
+        [formControl]="endDateControl"
+        [defaultValue]="currentTodo()?.endDate!.toISOString().split('T')[0]"
       />
     </div>
     <div class="flex">
       <button type="submit" class="p-3 border border-gray-300 bg-white rounded-lg hover:cursor-pointer">
-        Create todo
+        Update todo
       </button>
     </div>
   </form>

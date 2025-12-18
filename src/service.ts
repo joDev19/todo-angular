@@ -7,17 +7,27 @@ export class AppService {
       id: 1,
       title: 'Learn Angular',
       completed: false,
+      inUpdating: false,
       endDate: new Date('2025-12-31'),
     },
     {
       id: 2,
       title: 'Build a Todo App',
       completed: false,
+      inUpdating: false,
       endDate: new Date('2026-01-01'),
     },
   ];
   getTodos() {
     return this.todoList;
+  }
+  getTodo(id: number): Todo | undefined{
+    return this.todoList.find( todo => todo.id === id );
+  }
+  updateTodo(id: number, updatedTodoValues: Partial<Todo>): void {
+    this.todoList = this.todoList.map((todo) =>
+      todo.id === id ? { ...todo, ...updatedTodoValues } : todo
+    );
   }
   addTodo(todo: Todo) {
     this.todoList.push(todo);
