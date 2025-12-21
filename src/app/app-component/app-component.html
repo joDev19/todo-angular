@@ -3,12 +3,20 @@
 >
   <h1 class="text-center text-xl">List of all your todos</h1>
   <div class="h-1/4 flex flex-col gap-2">
-    <input
-      type="text"
-      placeholder="Search todos..."
-      class="w-full p-2 border border-gray-300 rounded"
-    />
     <div>
+      <div class="w-full">
+        <input
+          type="text"
+          [formControl]="searchedtitleControl"
+          placeholder="Search todos..."
+          class="w-4/5 p-2 border border-gray-300 rounded"
+        />
+        @if(searchedtitleControl.value) {
+        <button title="stop resaerch" type="button" class="ml-2">
+          <fa-icon [icon]="closeIcon" class="hover:text-red-500 hover:cursor-pointer" (click)="searchedtitleControl.setValue('')" />
+        </button>
+        }
+      </div>
       <label class="mr-4">
         <input type="radio" name="filter" value="all" checked class="mr-1" />
         All
@@ -23,9 +31,12 @@
       </label>
     </div>
   </div>
+  <p>
+    {{ searchedtitleControl.value }}
+  </p>
 
   <div class="flex flex-col  gap-3 min-h-2/4 overflow-y-auto">
-    @for (todo of todos; track $index) {
+    @for (todo of filteredTodo(); track $index) {
     <div
       class="relative border min-h-24 rounded p-3 flex justify-between items-center"
       [class]="{'border-red-500': checkIfDatepassed(todo.endDate), 'border-green-500': !checkIfDatepassed(todo.endDate)}"

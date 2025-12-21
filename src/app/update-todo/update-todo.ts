@@ -1,7 +1,6 @@
 import { Component, inject, input, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { toSignal } from '@angular/core/rxjs-interop';
 import { AppService } from '../../service';
 import Todo from '../../type';
 
